@@ -2,8 +2,6 @@
 
 A Python utility for secretly assigning a group of people their Secret Santa gift recipients (without the organizer even knowing)!
 
-As of now, just has the basic secret santa assignment working and a test to make sure recipients are distributed evenly
-
 To-Do List:
 - ~~Allow user to pass in a file with a list of participants to then assign secret santas~~
 - ~~Write each giver's recipient out to a file with the giver's name. This way, organizer generates the files and then sends each person the file with their name, and they'll know who to get a gift for~~
