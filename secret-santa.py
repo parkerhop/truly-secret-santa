@@ -101,7 +101,7 @@ def initSecretSanta():
 
 	if selection == '1':
 		results = assignParticipants(giveNames())
-		print(str(results))
+		writeResultFiles(results)
 
 	elif selection == '2':
 		print('use secert santas from file')
@@ -124,5 +124,10 @@ def giveNames():
 		participants.append(nameInput)
 		nameInput = input()
 	return participants
+
+def writeResultFiles(resultsMap):
+	for giver, recipient in resultsMap.items():
+		with open(f'{giver}.txt', 'w') as f:
+			f.write(f'Hello {giver}! Your Secret Santa is {recipient}')
 
 initSecretSanta()
