@@ -104,7 +104,8 @@ def initSecretSanta():
 		writeResultFiles(results)
 
 	elif selection == '2':
-		print('use secert santas from file')
+		results = assignParticipants(giveFile())
+		writeResultFiles(results)
 
 	elif selection == '3':
 		# Run Secret Santa assignment test
@@ -123,6 +124,25 @@ def giveNames():
 	while (nameInput is not None and nameInput != '25'):
 		participants.append(nameInput)
 		nameInput = input()
+	return participants
+
+def giveFile():
+	"""
+	Collect Secret Santa participant names one at a time via user input
+
+	Returns:
+		A list of Secret Santa participants
+	"""
+	fileName = input('Please enter the name of a file to read from: ')
+	while (fileName is None or fileName is ''):
+		fileName = input('Invalid, please enter a valid filename: ')
+	try:
+		with open(fileName, 'r') as f:
+			fileContents = f.readlines()
+		participants = [line.strip() for line in fileContents]
+	except FileNotFoundError:
+		print(f'Error: could not find file {fileName}')
+		exit(1)
 	return participants
 
 def writeResultFiles(resultsMap):
