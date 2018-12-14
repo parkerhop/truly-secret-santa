@@ -80,5 +80,28 @@ def testAssignParticipants():
 		for recipient, times in recipientTimes.items():
 			print (recipient + ': ' + str(times) + ' times')
 
+options = {
+	'1': 'Generate Secret Santas by giving names',
+	'2': 'Generate Secret Santas from file',
+	'3': 'Run distribution test'
+}
+
+print('Welecome to Truly Secret Santa! Please type a number for one of the following options:')
+for num, option in options.items():
+	print(num + ': ' + option)
+selection = input('Please select an option: ')
+
+while (selection is not None and selection not in options.keys()):
+	selection = input('Invalid selection, please select an option from above: ')
+
+if selection == '1':
+	print('give names option')
+	
+elif selection == '2':
+	print('use secert santas from file')
+
+elif selection == '3':
+	# Run Secret Santa assignment test
+	testAssignParticipants()
 # Run Secret Santa assignment test
-testAssignParticipants()
+# testAssignParticipants()
