@@ -75,33 +75,54 @@ def testAssignParticipants():
 	for giver, recipientTimes in frequencyMap.items():
 		print('#######################')
 
-		print('Giver:' + giver)
+		print(f'Giver: {giver}')
 		print()
 		for recipient, times in recipientTimes.items():
-			print (recipient + ': ' + str(times) + ' times')
+			print (f'{recipient}: {str(times)} times')
 
-options = {
-	'1': 'Generate Secret Santas by giving names',
-	'2': 'Generate Secret Santas from file',
-	'3': 'Run distribution test'
-}
 
-print('Welecome to Truly Secret Santa! Please type a number for one of the following options:')
-for num, option in options.items():
-	print(num + ': ' + option)
-selection = input('Please select an option: ')
+def initSecretSanta(): 
+	"""
+	Start the Secret Santa tool with basic menu
+	"""
+	options = {
+		'1': 'Generate Secret Santas by giving names',
+		'2': 'Generate Secret Santas from file',
+		'3': 'Run distribution test'
+	}
 
-while (selection is not None and selection not in options.keys()):
-	selection = input('Invalid selection, please select an option from above: ')
+	print('Welecome to Truly Secret Santa! Please type a number for one of the following options:')
+	for num, option in options.items():
+		print(f'{num}: {option}')
+	selection = input('Please select an option: ')
 
-if selection == '1':
-	print('give names option')
-	
-elif selection == '2':
-	print('use secert santas from file')
+	while (selection is not None and selection not in options.keys()):
+		selection = input('Invalid selection, please select an option from above: ')
 
-elif selection == '3':
-	# Run Secret Santa assignment test
-	testAssignParticipants()
-# Run Secret Santa assignment test
-# testAssignParticipants()
+	if selection == '1':
+		results = assignParticipants(giveNames())
+		print(str(results))
+
+	elif selection == '2':
+		print('use secert santas from file')
+
+	elif selection == '3':
+		# Run Secret Santa assignment test
+		testAssignParticipants()
+
+def giveNames():
+	"""
+	Collect Secret Santa participant names one at a time via user input
+
+	Returns:
+		A list of Secret Santa participants
+	"""
+	participants = []
+	print('Please enter participant names one at a time, then enter 25 when complete')
+	nameInput = input()
+	while (nameInput is not None and nameInput != '25'):
+		participants.append(nameInput)
+		nameInput = input()
+	return participants
+
+initSecretSanta()
