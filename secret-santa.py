@@ -126,8 +126,24 @@ def giveNames():
 	return participants
 
 def writeResultFiles(resultsMap):
-	for giver, recipient in resultsMap.items():
-		with open(f'{giver}.txt', 'w') as f:
-			f.write(f'Hello {giver}! Your Secret Santa is {recipient}')
+	"""
+	Write the Secret Santa results to text files.
+	
+	A text file will be generated for each participant, and the file
+	will be named after that participant. Each person's text file will
+	tell them who their gift recipient is. An organizer key with all
+	the Secret Santas is created as well.
+
+	Args:
+		resultsMap - dictionary of participants paired with their gift recipient
+	"""
+	with open('organizer-key.txt', 'w') as key:
+		key.write('Organizer Key:\n')
+		for giver, recipient in resultsMap.items():
+			with open(f'{giver}.txt', 'w') as f:
+				f.write(f'Hello {giver}! You will be Secret Santa for {recipient}')
+			key.write(f'{giver} will give a gift to {recipient}\n')
+
+
 
 initSecretSanta()
